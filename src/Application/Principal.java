@@ -35,17 +35,15 @@ public class Principal {
 			System.out.print("Check-out data (dd/MM/yyyy): ");
 			checkOut = sdf.parse(sc.next());
 			
-			Date now = new Date();
-			if (checkIn.before(now) || checkOut.before(now)) {
-				System.out.println("Erro em reserva: dados da reserva devem ser atualizados");
-			}
-			else if(!checkOut.after(checkIn)) {
-				System.out.println("Erro em reserva: Check-Out deve ser depois do Check-In encontrado");
-			}
-			else {
-				reservations.updateDates(checkIn, checkOut);
-				System.out.println("Reservações: " + reservations);
-			}
+			
+				String error = reservations.updateDates(checkIn, checkOut);
+			
+				if(error != null) {
+					System.out.println("Erro em reserva: " + error);
+				}
+				else {
+					System.out.println("Reserva: " + reservations);
+				}
 			
 			
 		}
